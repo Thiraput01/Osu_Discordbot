@@ -23,6 +23,7 @@ const CHANNELS = [
   "1170994441444675584",
   "1239276266138370252",
   "1240184556762693715",
+  "1239221025179308095",
 ];
 
 client.on("ready", () => {
@@ -34,31 +35,10 @@ client.on("messageCreate", async (message) => {
 
   if (
     CHANNELS.includes(message.channelId) &&
-    message.author.username === "xyey"
-  ) {
-    await message.reply(`บ่นควยไรไอกระโปกเปา`);
-    await sleep(100);
-    await message.channel.send("อย่าร้องให้มาก ไอดำ");
-    await sleep(100);
-    await message.channel.send("เอาเวลาไปเล่น osu ให้เก่งเท่ากูก่อน");
-    await sleep(50);
-    await message.channel.send("เล่นกาก ปากอย่าเก่ง");
-    await sleep(150);
-    await message.channel.send("ร้องมากเดี๋ยวเอาควยยัดปาก");
-  } else if (
-    CHANNELS.includes(message.channelId) &&
     !message.author.bot &&
     message.author.username !== "impen"
   ) {
-    await message.reply(`บ่นควยไรไอ ${message.author.username}`);
-  }
-
-  if (message.mentions.users.size > 0) {
-    message.mentions.users.forEach(async (mentionedUser) => {
-      if (mentionedUser.id === process.env.MY_USERID) {
-        await message.reply("แท็กทำควยไรน้อง");
-      }
-    });
+    await message.reply(`บ่นไร ${message.author.username}`);
   }
 });
 
@@ -69,10 +49,6 @@ client.on("interactionCreate", async (interaction) => {
 
   if (interaction.commandName === "ping") {
     await interaction.reply("Pong!");
-  }
-
-  if (interaction.commandName === "senior") {
-    await interaction.reply("BOOM!");
   }
 
   if (interaction.commandName === "get-user") {
@@ -115,7 +91,6 @@ client.on("interactionCreate", async (interaction) => {
       );
       const embed = await buildEmbedMap(beatmapData);
       await interaction.reply({ embeds: [embed] });
-
     } catch (error) {
       console.log(error.stack);
     }
