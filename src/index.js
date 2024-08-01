@@ -24,7 +24,7 @@ const CHANNELS = [
   "1239276266138370252",
   "1240184556762693715",
   "1239221025179308095",
-];
+]; // only works on specific channels for now
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);

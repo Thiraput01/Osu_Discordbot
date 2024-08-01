@@ -1,28 +1,41 @@
 import { EmbedBuilder } from "discord.js";
 
 export async function buildEmbedMap(beatmapData) {
+  const lastUpdated = beatmapData.last_updated;
+  const date = new Date(lastUpdated);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = date.toLocaleDateString("en-US", options);
+
   const embed = new EmbedBuilder()
     .setColor("#0099ff") // Set the color of the embed
-    .setTitle("Example Embed") // Set the title of the embed
-    .setURL("https://example.com") // Set the URL of the embed (title will be clickable)
-    .setAuthor({
-      name: "Author Name",
-      iconURL: "https://example.com/avatar.png",
-      url: "https://example.com",
-    }) // Set the author with a name, avatar, and URL
-    .setDescription("This is an example description") // Set the description of the embed
-    .setThumbnail("https://example.com/thumbnail.png") // Set the thumbnail image
-    .addFields(
-      { name: "Field 1", value: "Some value here", inline: true }, // Add a field with a name and value
-      { name: "Field 2", value: "Some value here", inline: true },
-      { name: "Field 3", value: "Some value here", inline: true }
+    .setTitle(
+      `${beatmapData.beatmapset.artist} – ${beatmapData.beatmapset.title}`
     )
-    .setImage("https://example.com/image.png") // Set an image to be displayed in the embed
-    .setTimestamp() // Set the current timestamp
-    .setFooter({
-      text: "Footer text",
-      iconURL: "https://example.com/footer-icon.png",
-    }); // Set the footer text and icon
+    .setURL(beatmapData.url)
+    .setDescription(
+      `Length: ${Math.floor(beatmapData.total_length / 60)}:${
+        beatmapData.total_length % 60 < 10 ? "0" : ""
+      }${beatmapData.total_length % 60} BPM: ${beatmapData.bpm} Mods: -`
+    )
+    .setThumbnail(beatmapData.beatmapset.covers.list)
+    .addFields(
+      {
+        name: "Difficulty",
+        value: `${beatmapData.difficulty_rating.toFixed(2)}★`,
+        inline: true,
+      },
+      { name: "Max Combo", value: `${beatmapData.max_combo}x`, inline: true },
+      { name: "AR", value: `${beatmapData.ar}`, inline: true },
+      { name: "OD", value: `${beatmapData.accuracy}`, inline: true },
+      { name: "HP", value: `${beatmapData.drain}`, inline: true },
+      { name: "CS", value: `${beatmapData.cs}`, inline: true },
+
+      {
+        name: `${beatmapData.status}`,
+        value: `${beatmapData.beatmapset.favourite_count} ❤️ | Last Updated ${formattedDate}`,
+        inline: false,
+      }
+    );
 
   return embed;
 }

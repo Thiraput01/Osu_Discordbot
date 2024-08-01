@@ -8,10 +8,6 @@ const commands = [
     description: "Replies with Pong!!",
   },
   {
-    name: "senior",
-    description: "boom!",
-  },
-  {
     name: "get-user",
     description: "get Osu user",
     options: [
@@ -19,9 +15,9 @@ const commands = [
         name: "url",
         description: "get user by http",
         type: ApplicationCommandOptionType.String,
-        required: true
-      }
-    ]
+        required: true,
+      },
+    ],
   },
   {
     name: "get-user-by-name",
@@ -31,9 +27,9 @@ const commands = [
         name: "username",
         description: "OSU! username",
         type: ApplicationCommandOptionType.String,
-        required: true
-      }
-    ]
+        required: true,
+      },
+    ],
   },
   {
     name: "get-beatmap",
@@ -43,11 +39,10 @@ const commands = [
         name: "url",
         description: "get beatmap by http",
         type: ApplicationCommandOptionType.String,
-        required: true
-      }
-    ]
-
-  }
+        required: true,
+      },
+    ],
+  },
 ];
 
 const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
