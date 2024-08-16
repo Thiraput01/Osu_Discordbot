@@ -1,4 +1,4 @@
-# osu Discord Bot
+# OSU! Discord Bot
 
 ## Description
 
