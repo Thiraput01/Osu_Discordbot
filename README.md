@@ -4,6 +4,8 @@
 
 The osu Discord Bot is a work-in-progress bot built with `discord.js` that provides various functionalities related to osu! game data. Currently, the bot supports commands for retrieving beatmap information and user data.
 
+This project aims to improve API and JavaScript skills.
+
 ## Current Commands
 
 - **`/get-beatmap <beatmap_url>`**: Fetches details about a specific osu! beatmap using its beatmap url.
